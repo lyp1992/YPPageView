@@ -14,6 +14,10 @@
 		994F981921A67E4B00441D01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 994F981721A67E4B00441D01 /* LaunchScreen.storyboard */; };
 		994F982421A67E4C00441D01 /* YPPageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F982321A67E4C00441D01 /* YPPageViewTests.swift */; };
 		994F982F21A67E4C00441D01 /* YPPageViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F982E21A67E4C00441D01 /* YPPageViewUITests.swift */; };
+		994F984021A682E600441D01 /* YPPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F983F21A682E600441D01 /* YPPageView.swift */; };
+		994F984221A682FE00441D01 /* YPPageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F984121A682FE00441D01 /* YPPageStyle.swift */; };
+		994F984421A684EB00441D01 /* YPTitlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F984321A684EB00441D01 /* YPTitlesView.swift */; };
+		994F984621A684F800441D01 /* YPContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F984521A684F800441D01 /* YPContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		994F982A21A67E4C00441D01 /* YPPageViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YPPageViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		994F982E21A67E4C00441D01 /* YPPageViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPPageViewUITests.swift; sourceTree = "<group>"; };
 		994F983021A67E4C00441D01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		994F983F21A682E600441D01 /* YPPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPPageView.swift; sourceTree = "<group>"; };
+		994F984121A682FE00441D01 /* YPPageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPPageStyle.swift; sourceTree = "<group>"; };
+		994F984321A684EB00441D01 /* YPTitlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPTitlesView.swift; sourceTree = "<group>"; };
+		994F984521A684F800441D01 /* YPContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,7 @@
 		994F980D21A67E4900441D01 /* YPPageView */ = {
 			isa = PBXGroup;
 			children = (
+				994F983C21A682AD00441D01 /* YPPageView */,
 				994F980E21A67E4900441D01 /* AppDelegate.swift */,
 				994F981021A67E4900441D01 /* ViewController.swift */,
 				994F981221A67E4900441D01 /* Main.storyboard */,
@@ -123,6 +132,17 @@
 				994F983021A67E4C00441D01 /* Info.plist */,
 			);
 			path = YPPageViewUITests;
+			sourceTree = "<group>";
+		};
+		994F983C21A682AD00441D01 /* YPPageView */ = {
+			isa = PBXGroup;
+			children = (
+				994F983F21A682E600441D01 /* YPPageView.swift */,
+				994F984121A682FE00441D01 /* YPPageStyle.swift */,
+				994F984321A684EB00441D01 /* YPTitlesView.swift */,
+				994F984521A684F800441D01 /* YPContentView.swift */,
+			);
+			path = YPPageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +207,7 @@
 		994F980321A67E4900441D01 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = YP;
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = LYP;
@@ -257,7 +278,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				994F981121A67E4900441D01 /* ViewController.swift in Sources */,
+				994F984021A682E600441D01 /* YPPageView.swift in Sources */,
 				994F980F21A67E4900441D01 /* AppDelegate.swift in Sources */,
+				994F984221A682FE00441D01 /* YPPageStyle.swift in Sources */,
+				994F984421A684EB00441D01 /* YPTitlesView.swift in Sources */,
+				994F984621A684F800441D01 /* YPContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,11 +458,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DN43523GZM;
 				INFOPLIST_FILE = YPPageView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = animal.YPPageView;
+				PRODUCT_BUNDLE_IDENTIFIER = "animal.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,11 +477,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DN43523GZM;
 				INFOPLIST_FILE = YPPageView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = animal.YPPageView;
+				PRODUCT_BUNDLE_IDENTIFIER = "animal.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
