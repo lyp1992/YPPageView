@@ -21,7 +21,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.viewDidLoad()
    
 //        setupUI()
-        
+
         let style = YPPageStyle()
         style.isScrollEnable = true
         
@@ -37,10 +37,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
 //        创建pageView
         let pageVFrame = CGRect(x: 0, y: 64, width: view.bounds.width, height: view.bounds.height - 64)
-        let pageView = YPPageView(frame: pageVFrame, style: style, titles: titles, childVCs: childVCs)
+        let pageView = YPPageView(frame: pageVFrame, style: style, titles: titles, childVCs: childVCs,parentVC : self)
         
         view.addSubview(pageView);
-        
+//
+    
     }
 
 }

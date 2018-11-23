@@ -14,12 +14,13 @@ class YPPageView: UIView {
     var style : YPPageStyle
     var titles : [String]
     var chileVCs : [UIViewController]
-    
-    init(frame : CGRect, style : YPPageStyle,titles : [String],childVCs : [UIViewController]) {
+    var parentVC : UIViewController
+    init(frame : CGRect, style : YPPageStyle,titles : [String],childVCs : [UIViewController],parentVC : UIViewController) {
 //       在init之前 保证数据已经被初始化
         self.style = style
         self.titles = titles
         self.chileVCs = childVCs
+        self.parentVC = parentVC
         super.init(frame: frame)
         setUpUI()
     }
@@ -38,8 +39,8 @@ extension YPPageView {
         titleView.backgroundColor = UIColor.gray
         addSubview(titleView)
 //        创建contentView
-        let contentFrame = CGRect(x: 0, y: style.titleHeight, width: bounds.width, height: bounds.height - style.titleHeight)
-        let contentView = YPContentView(frame: contentFrame, childVCs: chileVCs)
+        let contentFrame = CGRect(x: 0, y:style.titleHeight, width: bounds.width, height: bounds.height - style.titleHeight)
+        let contentView = YPContentView(frame: contentFrame, childVCs: chileVCs, parentVC: parentVC)
         contentView.backgroundColor = UIColor.purple
         addSubview(contentView)
         
