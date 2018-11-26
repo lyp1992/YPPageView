@@ -8,10 +8,28 @@
 
 import UIKit
 
+protocol YPTitleViewDelegate : class {
+    func titleView(_ titleView : YPTitlesView, currentIndex : Int)
+}
+
 class YPTitlesView: UIView {
 
+//    weak 只能用来修饰对象
+    weak var delegate : YPTitleViewDelegate?
+    
+    typealias ColorRGB = (red : CGFloat, green : CGFloat, blue : CGFloat)
     fileprivate  var style : YPPageStyle
     fileprivate var titles : [String]
+    fileprivate var currentIndex : Int = 0
+    fileprivate lazy var selectRGB : ColorRGB = self.style.selectColor.getRGB()
+    fileprivate lazy var normalRGB : ColorRGB = self.style.normalColor.getRGB()
+    fileprivate lazy var deltaRGB : ColorRGB = {
+        let deltaR = self.selectRGB.red - self.normalRGB.red
+        let detlaG = self.selectRGB.green - self.normalRGB.green
+        let deltaB = self.selectRGB.blue - self.normalRGB.blue
+        return (deltaR,detlaG,deltaB)
+    }()
+    
     fileprivate lazy var titleLabels : [UILabel] = [UILabel]()
     fileprivate lazy var scrollView : UIScrollView = {
        
@@ -101,8 +119,51 @@ extension YPTitlesView{
         guard let targetLabel = tapGes.view as? UILabel  else {
             return
         }
+        guard  targetLabel.tag != currentIndex else {
+            return
+        }
         
-        print(targetLabel.tag)
+//        取出之前的label
+        let sourceLabel = titleLabels[currentIndex]
+//        改变颜色
+        sourceLabel.textColor = style.normalColor
+        targetLabel.textColor = style.selectColor
+//        记录当前点击的label
+        currentIndex = targetLabel.tag
+//        让点击的label居中
+        addJustPosition(targetLabel)
+       delegate?.titleView(self, currentIndex: currentIndex)
     }
     
+    private func addJustPosition(_ targetLabel : UILabel){
+// 1.计算距离中心的offset
+       var offSetX = targetLabel.center.x - self.bounds.size.width * 0.5
+        if offSetX <= 0 {
+            offSetX = 0
+        }
+        if offSetX > scrollView.contentSize.width - scrollView.bounds.width {
+            offSetX = scrollView.contentSize.width - scrollView.bounds.width
+        }
+        
+        scrollView.setContentOffset(CGPoint(x: offSetX, y: 0), animated: true)
+        
+    }
+}
+
+extension YPTitlesView : YPContentViewDelegate{
+    func contentView(_ contentView: YPContentView, inIndex: Int) {
+        currentIndex = inIndex
+        addJustPosition(titleLabels[currentIndex])
+    }
+    
+    func contentView(_ contentView: YPContentView, sourceIndex: Int, targetIndex: Int, progress: CGFloat) {
+//        获取label
+        let targetLabel = titleLabels[targetIndex]
+        let sourceLabel = titleLabels[sourceIndex]
+        
+//        颜色渐变
+        sourceLabel.textColor = UIColor(r: selectRGB.red - progress * deltaRGB.red, g: selectRGB.green - progress * deltaRGB.green, b: selectRGB.blue - progress * deltaRGB.blue, alpha: 1)
+        targetLabel.textColor = UIColor(r: normalRGB.red + progress * deltaRGB.red, g: normalRGB.green + progress * deltaRGB.green, b: normalRGB.blue + progress * deltaRGB.blue, alpha: 1)
+        
+    }
 }

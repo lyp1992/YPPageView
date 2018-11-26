@@ -40,8 +40,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let pageView = YPPageView(frame: pageVFrame, style: style, titles: titles, childVCs: childVCs,parentVC : self)
         
         view.addSubview(pageView);
-//
-    
+
     }
 
 }

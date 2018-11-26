@@ -41,9 +41,11 @@ extension YPPageView {
 //        创建contentView
         let contentFrame = CGRect(x: 0, y:style.titleHeight, width: bounds.width, height: bounds.height - style.titleHeight)
         let contentView = YPContentView(frame: contentFrame, childVCs: chileVCs, parentVC: parentVC)
-        contentView.backgroundColor = UIColor.purple
+        contentView.backgroundColor = UIColor.randomColor
         addSubview(contentView)
         
 //        两个相互交互
+        titleView.delegate = contentView
+        contentView.delegate = titleView
     }
 }

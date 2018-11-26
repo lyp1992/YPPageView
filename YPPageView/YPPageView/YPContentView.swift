@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol YPContentViewDelegate : class {
+    func contentView(_ contentView : YPContentView,inIndex : Int)
+    func contentView(_ contentView : YPContentView,sourceIndex : Int,targetIndex : Int,progress : CGFloat)
+}
+
 private let collectionID = "YPcellID"
 
 class YPContentView: UIView {
 
-    var childVCs : [UIViewController]
-    var parentVC : UIViewController
+    weak var delegate : YPContentViewDelegate?
+   fileprivate var childVCs : [UIViewController]
+   fileprivate var parentVC : UIViewController
+   fileprivate var startOffsetX : CGFloat = 0
+    fileprivate var isForbidDelegate : Bool = false
     
     fileprivate lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -53,6 +61,7 @@ extension YPContentView {
         addSubview(collectionView)
         
         for childVC in childVCs {
+            childVC.view.backgroundColor = UIColor.randomColor
             parentVC.addChildViewController(childVC)
         }
     }
@@ -80,4 +89,67 @@ extension YPContentView : UICollectionViewDataSource {
 
 extension YPContentView : UICollectionViewDelegate {
     
+//    开始滚动
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isForbidDelegate = false
+        startOffsetX = scrollView.contentOffset.x
+    }
+    
+//    已经在滚动
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+//        判断是否需要执行后面的代码
+        if scrollView.contentOffset.x == startOffsetX || isForbidDelegate == true{
+            return
+        }
+        
+//        定义参数
+        var progress : CGFloat = 0
+        var targetIndex = 0
+        let sourceIndex = Int(startOffsetX / collectionView.bounds.width)
+        
+//        判断用户左移还是右移
+        if collectionView.contentOffset.x > startOffsetX{
+            //左移
+            targetIndex = sourceIndex + 1
+            progress = (collectionView.contentOffset.x - startOffsetX)/collectionView.bounds.width
+            
+        }else{
+            //右移
+            targetIndex = sourceIndex - 1
+            progress = (collectionView.contentOffset.x - startOffsetX)/collectionView.bounds.width
+        }
+        
+        delegate?.contentView(self, sourceIndex: sourceIndex, targetIndex: targetIndex, progress: progress)
+        
+    }
+    
+//    滚动完成
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        collectionViewDidEndDraging()
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            collectionViewDidEndDraging()
+        }
+    }
+    
+    func collectionViewDidEndDraging() {
+    
+//        获取位置
+        let index = collectionView.contentOffset.x/collectionView.bounds.width
+        delegate?.contentView(self, inIndex: Int(index))
+        
+    }
+    
+}
+
+extension YPContentView : YPTitleViewDelegate {
+    func titleView(_ titleView: YPTitlesView, currentIndex: Int) {
+        isForbidDelegate = true
+//        取出当前item的indexopath
+        let indexPath = IndexPath(item: currentIndex, section: 0)
+        
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+    }
 }
