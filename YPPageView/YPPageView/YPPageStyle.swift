@@ -21,4 +21,21 @@ class YPPageStyle {
     
     var titleMargin : CGFloat = 30
     
+//    设置底部bottomLine
+    var isBottomLineShow : Bool = false
+    var bottomLineHeight : CGFloat = 2
+    var bottomLineColor : UIColor = UIColor.orange
+    
+//    缩放
+    var isScaleAble : Bool = true
+    var scale : CGFloat = 1.2
+    
+//    是否需要显示coverView
+    var isShowCoverView : Bool = false
+    var coverBgColor : UIColor = UIColor.black
+    var coverAlpha : CGFloat = 0.4
+    var coverMargin : CGFloat = 8
+    var coverHeight : CGFloat = 25
+    var coverRadius : CGFloat = 12
+    
 }

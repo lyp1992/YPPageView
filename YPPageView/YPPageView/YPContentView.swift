@@ -117,7 +117,7 @@ extension YPContentView : UICollectionViewDelegate {
         }else{
             //右移
             targetIndex = sourceIndex - 1
-            progress = (collectionView.contentOffset.x - startOffsetX)/collectionView.bounds.width
+            progress = (startOffsetX - collectionView.contentOffset.x)/collectionView.bounds.width
         }
         
         delegate?.contentView(self, sourceIndex: sourceIndex, targetIndex: targetIndex, progress: progress)
