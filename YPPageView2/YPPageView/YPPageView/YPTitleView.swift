@@ -31,9 +31,12 @@ class YPTitleView: UIView {
         let scrollV = UIScrollView()
         scrollV.frame = self.bounds
         scrollV.showsHorizontalScrollIndicator = false
+        scrollV.bounces = false
+        scrollV.showsVerticalScrollIndicator = false
         scrollV.scrollsToTop = false
         scrollV.contentSize = CGSize(width: bounds.size.width, height: bounds.size.height)
-        
+        scrollV.contentOffset = CGPoint(x: 0, y: 0)
+//        scrollV.backgroundColor = UIColor.red
         return scrollV
     }()
     fileprivate lazy var splitLineView : UIView = {
@@ -62,10 +65,9 @@ class YPTitleView: UIView {
     
     // MARK: 自定义构造函数
     init(frame: CGRect, titles : [String], style : YPPageStyle) {
-        super.init(frame: frame)
-        
         self.titles = titles
         self.style = style
+        super.init(frame: frame)
         
         setupUI()
     }
@@ -79,9 +81,12 @@ class YPTitleView: UIView {
 // MARK:- 设置UI界面内容
 extension YPTitleView {
     fileprivate func setupUI() {
+        self.autoresizesSubviews = false
+        self.translatesAutoresizingMaskIntoConstraints = false
+       scrollView.translatesAutoresizingMaskIntoConstraints = false
         // 1.添加Scrollview
         addSubview(scrollView)
-       
+       print("scrollview.bounds",scrollView.bounds,scrollView.frame)
         // 2.添加底部分割线
         addSubview(splitLineView)
         
@@ -93,12 +98,12 @@ extension YPTitleView {
         
         // 5.设置底部的滚动条
         if style.isBottomLineShow {
-//            setupBottomLine()
+            setupBottomLine()
         }
         
         // 6.设置遮盖的View
         if style.isShowCoverView {
-//            setupCoverView()
+            setupCoverView()
         }
     }
     
@@ -110,7 +115,6 @@ extension YPTitleView {
             label.textColor = index == 0 ? style.selectColor : style.normalColor
             label.font = UIFont.systemFont(ofSize: style.fontSize)
             label.textAlignment = .center
-            label.backgroundColor = UIColor.red
             label.isUserInteractionEnabled = true
             let tapGes = UITapGestureRecognizer(target: self, action: #selector(titleLabelClick(_ :)))
             label.addGestureRecognizer(tapGes)
@@ -157,7 +161,7 @@ extension YPTitleView {
         }
         
         if style.isScrollEnable {
-            scrollView.contentSize = CGSize(width: titleLabels.last!.frame.maxX + style.titleMargin * 0.5, height: 40)
+            scrollView.contentSize = CGSize(width: titleLabels.last!.frame.maxX + style.titleMargin * 0.5, height: style.titleHeight)
         }
     }
     
@@ -245,8 +249,13 @@ extension YPTitleView {
         guard let components = color.cgColor.components else {
             fatalError("请使用RGB方式给Title赋值颜色")
         }
-        
-        return (components[0] * 255, components[1] * 255, components[2] * 255)
+        if components.count > 2 {
+            
+            return (components[0] * 255, components[1] * 255, components[2] * 255)
+        }else{
+           let components = color.getRGB()
+            return (components.0 * 255, components.1 * 255, components.2 * 255)
+        }
     }
 }
 
@@ -317,4 +326,17 @@ extension YPTitleView {
     }
 }
 
+extension YPTitleView : YPContentViewDelegate {
+    func contentView(_ contentView: YPContentView, inIndex: Int) {
+        self.contentViewDidEndScroll()
+    }
+    
+    func contentView(_ contentView: YPContentView, sourceIndex: Int, targetIndex: Int, progress: CGFloat) {
+        
+        self.setTitleWithProgress(progress, sourceIndex: sourceIndex, targetIndex: targetIndex)
+    }
+    
+    
+    
+}
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9951C94521ED85E900F8A401 /* YPTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951C94421ED85E900F8A401 /* YPTitleView.swift */; };
 		99CF294721EC8485000A9D3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF294621EC8485000A9D3E /* AppDelegate.swift */; };
 		99CF294921EC8485000A9D3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF294821EC8485000A9D3E /* ViewController.swift */; };
 		99CF294C21EC8485000A9D3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99CF294A21EC8485000A9D3E /* Main.storyboard */; };
@@ -16,7 +17,6 @@
 		99CF296721EC8487000A9D3E /* YPPageViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF296621EC8487000A9D3E /* YPPageViewUITests.swift */; };
 		99CF297B21EC84AE000A9D3E /* YPPageCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF297521EC84AE000A9D3E /* YPPageCollectionLayout.swift */; };
 		99CF297C21EC84AE000A9D3E /* YPPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF297621EC84AE000A9D3E /* YPPageCollectionView.swift */; };
-		99CF297D21EC84AE000A9D3E /* YPTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF297721EC84AE000A9D3E /* YPTitleView.swift */; };
 		99CF297E21EC84AE000A9D3E /* YPPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF297821EC84AE000A9D3E /* YPPageView.swift */; };
 		99CF297F21EC84AE000A9D3E /* YPContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF297921EC84AE000A9D3E /* YPContentView.swift */; };
 		99CF298021EC84AE000A9D3E /* YPPageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF297A21EC84AE000A9D3E /* YPPageStyle.swift */; };
@@ -41,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9951C94421ED85E900F8A401 /* YPTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPTitleView.swift; sourceTree = "<group>"; };
 		99CF294321EC8485000A9D3E /* YPPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99CF294621EC8485000A9D3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99CF294821EC8485000A9D3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		99CF296821EC8487000A9D3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99CF297521EC84AE000A9D3E /* YPPageCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPPageCollectionLayout.swift; sourceTree = "<group>"; };
 		99CF297621EC84AE000A9D3E /* YPPageCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPPageCollectionView.swift; sourceTree = "<group>"; };
-		99CF297721EC84AE000A9D3E /* YPTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPTitleView.swift; sourceTree = "<group>"; };
 		99CF297821EC84AE000A9D3E /* YPPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPPageView.swift; sourceTree = "<group>"; };
 		99CF297921EC84AE000A9D3E /* YPContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPContentView.swift; sourceTree = "<group>"; };
 		99CF297A21EC84AE000A9D3E /* YPPageStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPPageStyle.swift; sourceTree = "<group>"; };
@@ -146,10 +146,10 @@
 				99CF298121EC850C000A9D3E /* UIColor-YPExtension.swift */,
 				99CF297521EC84AE000A9D3E /* YPPageCollectionLayout.swift */,
 				99CF297621EC84AE000A9D3E /* YPPageCollectionView.swift */,
-				99CF297721EC84AE000A9D3E /* YPTitleView.swift */,
 				99CF297821EC84AE000A9D3E /* YPPageView.swift */,
 				99CF297921EC84AE000A9D3E /* YPContentView.swift */,
 				99CF297A21EC84AE000A9D3E /* YPPageStyle.swift */,
+				9951C94421ED85E900F8A401 /* YPTitleView.swift */,
 			);
 			path = YPPageView;
 			sourceTree = "<group>";
@@ -287,8 +287,8 @@
 			files = (
 				99CF294921EC8485000A9D3E /* ViewController.swift in Sources */,
 				99CF298221EC850C000A9D3E /* UIColor-YPExtension.swift in Sources */,
+				9951C94521ED85E900F8A401 /* YPTitleView.swift in Sources */,
 				99CF297B21EC84AE000A9D3E /* YPPageCollectionLayout.swift in Sources */,
-				99CF297D21EC84AE000A9D3E /* YPTitleView.swift in Sources */,
 				99CF298021EC84AE000A9D3E /* YPPageStyle.swift in Sources */,
 				99CF297C21EC84AE000A9D3E /* YPPageCollectionView.swift in Sources */,
 				99CF297E21EC84AE000A9D3E /* YPPageView.swift in Sources */,

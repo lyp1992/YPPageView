@@ -14,7 +14,7 @@ class YPPageStyle {
     var isScrollEnable : Bool = false
     
 //    设置label的属性
-    var titleHeight : CGFloat = 40
+    var titleHeight : CGFloat = 44
     var normalColor : UIColor = UIColor.white
     var selectColor : UIColor = UIColor.orange
     var fontSize : CGFloat = 15
